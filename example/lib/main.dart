@@ -1,5 +1,5 @@
+import 'package:biometric_authentication/biometric_authentication.dart';
 import 'package:flutter/material.dart';
-import 'package:biometric_authentication/biometric/biometric.dart';
 import 'package:flutter_platform_widgets/flutter_platform_widgets.dart';
 
 void main() {

@@ -1,5 +1,5 @@
-import 'package:flutter/services.dart';
-import 'package:local_auth/local_auth.dart';
+part of biometric_authentication;
+
 
 class BiometricAuth {
   final LocalAuthentication _localAuth = LocalAuthentication();

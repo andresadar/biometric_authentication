@@ -1,39 +1,73 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Biometric Authentication
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+A Flutter package for biometric authentication (fingerprint, Face ID, and Touch ID).
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+* Check if biometric authentication is available on the device
+* Authenticate using available biometric methods (fingerprint, Face ID, or Touch ID)
+* Retrieve a list of available biometric types
+* Cross-platform support for both Android and iOS
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To start using the package, follow these steps:
+
+1. Add the package to your `pubspec.yaml` file.
+2. Import the package in your Dart file.
+3. Create an instance of the `BiometricAuth` class.
+4. Implement the sign-in method.
+5. Call the `signInWithBiometrics()` function.
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+Here's a short example of how to use the `biometric_authentication` package in your Flutter app:
+
+Import the package in your Dart file:
+
+import 'package:biometric_authentication/biometric_auth.dart';
+
+Create an instance of the `BiometricAuth` class:
+
+final BiometricAuth _biometricAuth = BiometricAuth();
+
+Implement the sign-in method:
 
 ```dart
-const like = 'sample';
+Future<bool> signInWithBiometrics() async {
+  bool isAuthenticated = false;
+  bool isBiometricAvailable = await _biometricAuth.isBiometricAvailable();
+
+  if (isBiometricAvailable) {
+    isAuthenticated = await _biometricAuth.authenticateWithBiometrics('Please authenticate to continue');
+  }
+
+  return isAuthenticated;
+}
 ```
+
+Call the `signInWithBiometrics()` function:
+
+```dart
+ElevatedButton(
+  onPressed: () async {
+    bool isAuthenticated = await signInWithBiometrics();
+    if (isAuthenticated) {
+      // Sign in and navigate to the next screenx
+    } else {
+      // Show an error message or perform another action in case of failure
+    }
+  },
+  child: Text('Sign in with Fingerprint / Face ID'),
+);
+```
+
+For more examples, check the `/example` folder in the package repository.
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+To find more information about the package, contribute to the package, or file issues, visit the package's GitHub repository. You can expect timely responses from the package authors and maintainers.
+
+For a complete API reference, check the [package documentation](https://pub.dev/documentation/biometric_authentication/latest/).
+
+To contribute to the project, feel free to submit a pull request or open an issue on the [GitHub repository](https://github.com/andresadar/biometric_authentication).
